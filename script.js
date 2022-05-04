@@ -6,20 +6,24 @@ console.log (parseInt(numKm));
 const eta = prompt("Quanti anni hai?");
 console.log (parseInt(eta));
 
-// prezzo x km
-const prezzo = (numKm * 0.21);
-console.log (prezzo);
-
 // calcolo eventuale sconto (20% minorenne, 40% over 65)
+const prezzoScontoMinorenne = 0.21*80/100;
+const prezzoScontoOver65 = 0.21*60/100;
+let prezzo
+
 if (eta < 18) {
-    const prezzoScontoMinorenne = (prezzo/100)*80;
-    console.log (prezzoScontoMinorenne.toFixed(2));
+    prezzo = numKm*prezzoScontoMinorenne;
+    prezzo = prezzo.toFixed(2);
+    console.log (prezzoScontoMinorenne);
 } else if (eta >= 65) {
-    const prezzoScontoOver65 = (prezzo/100)*60;
+    prezzo = numKm*prezzoScontoOver65;
+    prezzo = prezzo.toFixed(2);
     console.log (prezzoScontoOver65);
 } else {
-    console.log (prezzo)
+    prezzo = numKm*0.21;
+    prezzo = prezzo.toFixed(2);
+    console.log (prezzo);
 }
 
 // output con due decimali
-
+document.getElementById("prezzo-finale").innerHTML = "Il prezzo del tuo biglietto è €" + prezzo;
